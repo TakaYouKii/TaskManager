@@ -15,8 +15,8 @@ import com.example.taskmanager.model.OnBoarding
 class OnBoardingAdapter(private val onClick:()-> Unit): Adapter<OnBoardingAdapter.OnBoardingViewHolder>(){
 
     private val data = arrayListOf<OnBoarding>(
-        OnBoarding("Вкусная еда","У нас в заведении - вкусная еда, приготовленная с любовью и заботой.", "https://e7.pngegg.com/pngimages/380/291/png-clipart-hamburger-fast-food-restaurant-junk-food-kfc-cartoon-french-fries-food-orange.png"),
-        OnBoarding("Бесплатная доставка", "Мы рады предложить нашим клиентам услугу бесплатной доставки.", "https://e7.pngegg.com/pngimages/94/325/png-clipart-pizza-delivery-graphics-food-delivery-motorcycle-cartoon-logo-motorcycle-cartoon.png"),
+        OnBoarding("Вкусная еда","У нас в заведении - вкусная еда, приготовленная с любовью и заботой.", "https://static.vecteezy.com/system/resources/thumbnails/019/607/567/small/fast-food-vector-clipart-design-graphic-clipart-design-free-png.png"),
+        OnBoarding("Бесплатная доставка", "Мы рады предложить нашим клиентам услугу бесплатной доставки.", "https://cdni.iconscout.com/illustration/premium/thumb/food-delivery-in-coronavirus-pandemic-5071253-4257131.png"),
         OnBoarding("Удобная оплата", "У нас предоставлена легкая и удобная система оплаты для вашего удобства.", "https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3229460/easy-payment-clipart-md.png")
     )
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OnBoardingViewHolder {
