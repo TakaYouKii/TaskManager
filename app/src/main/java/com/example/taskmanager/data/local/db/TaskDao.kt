@@ -1,5 +1,6 @@
 package com.example.taskmanager.data.local.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -12,6 +13,9 @@ interface TaskDao {
 
     @Query("SELECT*FROM task ORDER BY id DESC")
     fun getAll():List<Task>
+
+    @Query("SELECT * FROM task WHERE id = :taskId")
+    fun getById(taskId: Int):List<Task>?
 
     @Insert
     fun insert(task: Task)
