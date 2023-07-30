@@ -11,8 +11,6 @@ class TaskAdapter(val onLongClick:(position: Int)->Boolean):RecyclerView.Adapter
 
     private val list = arrayListOf<Task>()
 
-
-
     fun addTasks(tasks: List<Task>){
         list.clear()
         list.addAll(tasks)
@@ -24,7 +22,6 @@ class TaskAdapter(val onLongClick:(position: Int)->Boolean):RecyclerView.Adapter
     }
 
     override fun getItemCount() = list.size
-
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         holder.bind(list[position])
@@ -39,5 +36,4 @@ class TaskAdapter(val onLongClick:(position: Int)->Boolean):RecyclerView.Adapter
             }
         }
     }
-
 }

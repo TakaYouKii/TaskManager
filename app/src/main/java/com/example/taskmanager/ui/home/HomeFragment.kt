@@ -14,8 +14,7 @@ import com.example.taskmanager.App
 import com.example.taskmanager.R
 import com.example.taskmanager.databinding.FragmentHomeBinding
 import com.example.taskmanager.model.Task
-import com.example.taskmanager.ui.Task.TaskFragment.Companion.RESULT_KEY
-import com.example.taskmanager.ui.Task.TaskFragment.Companion.RESULT_REQUEST_KEY
+
 import com.example.taskmanager.ui.Task.adapter.TaskAdapter
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
@@ -27,11 +26,11 @@ class HomeFragment : Fragment() {
     private fun onLongClick(taskId: Int): Boolean {
 
         val builder = AlertDialog.Builder(this.requireContext())
-        builder.setTitle("Delete")
-        builder.setMessage("Are you sure about this?")
-        builder.setNeutralButton("Cansel") { _, _ ->
+        builder.setTitle(getString(R.string.delete))
+        builder.setMessage(getString(R.string.delete_message))
+        builder.setNeutralButton(getString(R.string.cansel)) { _, _ ->
         }
-        builder.setPositiveButton("Yes") { _, _ ->
+        builder.setPositiveButton(getString(R.string.yes)) { _, _ ->
             val list = App.db.taskDao().getAll()
             val taskListItem = list[taskId]
             App.db.taskDao().delete(taskListItem)
@@ -40,7 +39,6 @@ class HomeFragment : Fragment() {
         builder.show()
         return true
     }
-
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -52,21 +50,19 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.recyclerView.adapter = adapter
         val data = App.db.taskDao().getAll()
         adapter.addTasks(data)
         binding.fab.setOnClickListener{
             findNavController().navigate(R.id.taskFragment)
         }
-
     }
     override fun onDestroyView() {
         super.onDestroyView()

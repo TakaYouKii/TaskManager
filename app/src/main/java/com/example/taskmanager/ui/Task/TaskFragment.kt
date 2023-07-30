@@ -14,7 +14,6 @@ import com.example.taskmanager.databinding.ActivityMainBinding
 import com.example.taskmanager.databinding.FragmentTaskkBinding
 import com.example.taskmanager.model.Task
 
-
 class TaskFragment : Fragment() {
 
     private lateinit var binding: FragmentTaskkBinding
@@ -35,16 +34,8 @@ class TaskFragment : Fragment() {
                 desk = binding.etDescription.text.toString().trim(),
             )
 
-//            setFragmentResult(RESULT_REQUEST_KEY, bundleOf(RESULT_KEY to data))
             App.db.taskDao().insert(data)
             findNavController().navigateUp()
         }
     }
-
-    companion object{
-        const val RESULT_REQUEST_KEY = "request.key"
-        const val RESULT_KEY = "result.key"
-    }
-
-
 }
