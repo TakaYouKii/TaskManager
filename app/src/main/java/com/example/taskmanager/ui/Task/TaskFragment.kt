@@ -33,9 +33,17 @@ class TaskFragment : Fragment() {
                 title = binding.etTitle.text.toString().trim(),
                 desk = binding.etDescription.text.toString().trim(),
             )
+            if(data.title?.isEmpty() == true){
+                binding.etTitle.error = "Поле Title пустое!"
+            }
+            else if(data.desk?.isEmpty() == true){
+                binding.etDescription.error = "Поле Description пустое!"
+            }
+            else{
+                App.db.taskDao().insert(data)
+                findNavController().navigateUp()
+            }
 
-            App.db.taskDao().insert(data)
-            findNavController().navigateUp()
         }
     }
 }

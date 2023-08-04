@@ -65,6 +65,5 @@ class MainActivity : AppCompatActivity() {
 
         })
     }
-
-
+    //SSH
 }
