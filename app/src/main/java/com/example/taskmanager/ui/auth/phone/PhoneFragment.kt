@@ -5,56 +5,65 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 import com.example.taskmanager.R
+import com.example.taskmanager.databinding.FragmentPhoneBinding
+import com.google.firebase.FirebaseException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
+import java.util.concurrent.TimeUnit
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [PhoneFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class PhoneFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    lateinit var binding: FragmentPhoneBinding
+
+    private val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+        override fun onVerificationCompleted(credential: PhoneAuthCredential) {}
+
+        override fun onVerificationFailed(e: FirebaseException) {}
+
+        override fun onCodeSent(
+            verificationId: String,
+            token: PhoneAuthProvider.ForceResendingToken,
+        ) {
+            findNavController().navigate(R.id.verifyFragment, bundleOf( VERIFY_KEY to verificationId))
         }
     }
+
+    private val auth: FirebaseAuth by lazy {
+        FirebaseAuth.getInstance()
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_phone, container, false)
+        binding = FragmentPhoneBinding.inflate(layoutInflater)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PhoneFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PhoneFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.btnSend.setOnClickListener {
+            val options = PhoneAuthOptions.newBuilder(auth)
+                .setPhoneNumber(binding.etTitle.text.toString()) // Phone number to verify
+                .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                .setActivity(requireActivity()) // Activity (for callback binding)
+                .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
+                .build()
+            PhoneAuthProvider.verifyPhoneNumber(options)
+        }
     }
+
+    companion object{
+        const val VERIFY_KEY = "ver_key"
+    }
+    //1
 }
