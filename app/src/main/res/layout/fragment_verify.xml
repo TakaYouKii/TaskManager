@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.auth.phone.PhoneFragment"
+    tools:context=".ui.auth.number.phone.PhoneFragment"
     android:padding="16dp">
 
 
@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:hint="Введите код"
             android:textSize="24sp"
+            android:inputType="number"
             android:drawablePadding="8dp"
             android:drawableStart="@drawable/ic_pen"/>
     </com.google.android.material.textfield.TextInputLayout>

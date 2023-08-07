@@ -1,4 +1,4 @@
-package com.example.taskmanager.ui.auth.phone
+package com.example.taskmanager.ui.auth.number.phone
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -53,7 +53,7 @@ class PhoneFragment : Fragment() {
 
         binding.btnSend.setOnClickListener {
             val options = PhoneAuthOptions.newBuilder(auth)
-                .setPhoneNumber(binding.etTitle.text.toString()) // Phone number to verify
+                .setPhoneNumber("+996"+ binding.etPhoneNumber.text.toString()) // Phone number to verify
                 .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
                 .setActivity(requireActivity()) // Activity (for callback binding)
                 .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
@@ -65,5 +65,5 @@ class PhoneFragment : Fragment() {
     companion object{
         const val VERIFY_KEY = "ver_key"
     }
-    //1
+
 }

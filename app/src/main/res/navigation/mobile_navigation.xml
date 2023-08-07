@@ -39,12 +39,17 @@
         tools:layout="@layout/fragment_on_boarding" />
     <fragment
         android:id="@+id/phoneFragment"
-        android:name="com.example.taskmanager.ui.auth.phone.PhoneFragment"
+        android:name="com.example.taskmanager.ui.auth.number.phone.PhoneFragment"
         android:label="fragment_phone"
         tools:layout="@layout/fragment_phone" />
     <fragment
         android:id="@+id/verifyFragment"
-        android:name="com.example.taskmanager.ui.auth.verify.VerifyFragment"
+        android:name="com.example.taskmanager.ui.auth.number.verify.VerifyFragment"
         android:label="fragment_verify"
         tools:layout="@layout/fragment_verify" />
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="com.example.taskmanager.ui.auth.google.AuthFragment"
+        android:label="fragment_auth"
+        tools:layout="@layout/fragment_auth" />
 </navigation>

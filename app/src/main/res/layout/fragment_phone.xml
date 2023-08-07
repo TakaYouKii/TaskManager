@@ -4,26 +4,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.auth.phone.PhoneFragment"
+    tools:context=".ui.auth.number.phone.PhoneFragment"
     android:padding="16dp">
 
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/id_phone"
+        android:id="@+id/phone_number_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:prefixText="+996"
+        app:prefixTextColor="@color/black"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_title"
+            android:id="@+id/et_phone_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Введите номер телефона"
             android:textSize="24sp"
+            android:inputType="number"
             android:drawablePadding="8dp"
             android:drawableStart="@drawable/ic_phone"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -37,7 +40,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/id_phone"
+        app:layout_constraintTop_toTopOf="@+id/phone_number_container"
 
         />
 

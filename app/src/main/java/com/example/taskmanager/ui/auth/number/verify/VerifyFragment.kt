@@ -1,4 +1,4 @@
-package com.example.taskmanager.ui.auth.verify
+package com.example.taskmanager.ui.auth.number.verify
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.taskmanager.R
 import com.example.taskmanager.databinding.FragmentVerifyBinding
-import com.example.taskmanager.ui.auth.phone.PhoneFragment.Companion.VERIFY_KEY
+import com.example.taskmanager.ui.auth.number.phone.PhoneFragment.Companion.VERIFY_KEY
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
@@ -49,8 +49,6 @@ class VerifyFragment : Fragment() {
             }.addOnFailureListener{
                 Toast.makeText(context,"Что то пошло не так",Toast.LENGTH_LONG ).show()
             }
-
-
     }
 
 }

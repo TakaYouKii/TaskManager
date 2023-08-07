@@ -1,6 +1,8 @@
 package com.example.taskmanager
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -21,6 +23,10 @@ class MainActivity : AppCompatActivity() {
         Pref(this)
     }
 
+    private val auth: FirebaseAuth by lazy {
+        FirebaseAuth.getInstance()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -39,7 +45,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_notifications,
                 R.id.taskFragment,
                 R.id.navigation_profile,
-                R.id.navigation_on_boarding
+                R.id.navigation_on_boarding,
+                R.id.authFragment,
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -49,13 +56,14 @@ class MainActivity : AppCompatActivity() {
             navController.navigate(R.id.navigation_on_boarding)}
 
         if(FirebaseAuth.getInstance().currentUser?.uid == null){
-            navController.navigate(R.id.phoneFragment)
+            navController.navigate(R.id.authFragment)
         }
 
         val fragmentWithoutBottomNav = setOf(
             R.id.navigation_on_boarding,
             R.id.phoneFragment,
-            R.id.verifyFragment
+            R.id.verifyFragment,
+            R.id.authFragment,
         )
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (fragmentWithoutBottomNav.contains(destination.id)) {
@@ -67,5 +75,19 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.profile_menu, menu)
+//        return super.onCreateOptionsMenu(menu)
+//    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        if(item.itemId == R.id.sign_out){
+//            FirebaseAuth.getInstance().signOut()
+//            findNavController(R.id.authFragment)
+//        }
+//        return super.onOptionsItemSelected(item)
+//
+//    }
 
 }
