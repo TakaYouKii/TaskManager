@@ -37,7 +37,6 @@ class ProfileFragment : Fragment() {
         Pref(requireContext())
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -59,7 +58,6 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(R.id.authFragment)
         }
 
-
         binding.imgProfile.setImageURI(pref.getImage().toString().toUri())
 
         binding.imgProfile.setOnClickListener{
@@ -72,8 +70,6 @@ class ProfileFragment : Fragment() {
 
         }
     }
-
-
 
 //    private fun signOutFun(){
 //        val currentUser = auth.currentUser

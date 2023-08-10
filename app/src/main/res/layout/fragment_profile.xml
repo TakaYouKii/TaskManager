@@ -49,11 +49,4 @@
                 android:textSize="24sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
-
-
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
